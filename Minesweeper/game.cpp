@@ -1,9 +1,12 @@
 #include "Game.h"
-using namespace std;
+#include <iostream>
 
 Game::Game(int rows, int cols, int mines)
     : board(rows, cols, mines), isGameOver(false), isWin(false),
-    window(sf::VideoMode(640, 480), "Minesweeper") {
+    window(sf::VideoMode(600, 600), "Minesweeper") {
+
+    // Load texture from the file
+    // Note: textures are now loaded in Board class
 }
 
 void Game::revealCell(int row, int col) {
@@ -24,24 +27,16 @@ void Game::run() {
 
             if (event.type == sf::Event::MouseButtonPressed) {
                 if (event.mouseButton.button == sf::Mouse::Left) {
-                    // Explicitly declare the pair type for row and col
                     std::pair<int, int> cell = board.getCellFromPosition(event.mouseButton.x, event.mouseButton.y);
-                    int row = cell.first;
-                    int col = cell.second;
-
-                    if (row != -1 && col != -1) {
-                        revealCell(row, col);
+                    if (cell.first != -1 && cell.second != -1) {
+                        revealCell(cell.first, cell.second);
                     }
                 }
 
                 if (event.mouseButton.button == sf::Mouse::Right) {
-                    // Explicitly declare the pair type for row and col
                     std::pair<int, int> cell = board.getCellFromPosition(event.mouseButton.x, event.mouseButton.y);
-                    int row = cell.first;
-                    int col = cell.second;
-
-                    if (row != -1 && col != -1) {
-                        flagCell(row, col);
+                    if (cell.first != -1 && cell.second != -1) {
+                        flagCell(cell.first, cell.second);
                     }
                 }
             }
@@ -49,6 +44,6 @@ void Game::run() {
 
         window.clear();
         board.draw(window);  // Draw the entire board
-        window.display();    // Display everything on the screen
+        window.display();
     }
 }

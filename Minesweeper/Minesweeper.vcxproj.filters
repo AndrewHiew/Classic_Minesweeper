@@ -40,7 +40,43 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\Desktop\tiles.jpg">
+    <Image Include="1-tile.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="2-tile.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="3-tile.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="4-tile.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="5-tile.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="6-tile.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="7-tile.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="8-tile.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="clicked-mine-tile.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="flag-tile.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="mine-tile.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="normal-tile.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="revealed-tile.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

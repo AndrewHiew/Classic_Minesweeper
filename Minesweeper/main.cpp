@@ -3,7 +3,7 @@
 
 int main() {
     // Create a game instance
-    Game game(10, 10, 10);  // 10x10 grid with 10 mines
+    Game game(15, 15, 20);
     game.run();
 
     return 0;

@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 
 using namespace std;
+using namespace sf;
 
 class Board {
 private:
@@ -12,7 +13,11 @@ private:
     int numCols;
     int numMines;
     vector<vector<Cell>> grid;
-    sf::Texture tilesTexture;
+
+    Texture tileTexture;
+    Texture flagTexture;
+    Texture mineTexture;
+    Texture revealedTexture;
 
     void generateMines();
     void calculateAdjacentMines();
@@ -27,8 +32,10 @@ public:
     int getAdjacentMines(int row, int col) const;
     bool isValidCell(int row, int col) const;
     bool isMine(int row, int col) const;
+    Cell& getCell(int row, int col);
 
-    void draw(sf::RenderWindow& window);  // Draw the entire board
+    void draw(RenderWindow& window);  // Draw the entire board
     pair<int, int> getCellFromPosition(float x, float y); // Get cell based on mouse click
-};
 
+    void loadTextures();
+};

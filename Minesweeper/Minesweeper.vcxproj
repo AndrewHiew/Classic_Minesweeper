@@ -138,7 +138,19 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\Desktop\tiles.jpg" />
+    <Image Include="1-tile.png" />
+    <Image Include="2-tile.png" />
+    <Image Include="3-tile.png" />
+    <Image Include="4-tile.png" />
+    <Image Include="5-tile.png" />
+    <Image Include="6-tile.png" />
+    <Image Include="7-tile.png" />
+    <Image Include="8-tile.png" />
+    <Image Include="clicked-mine-tile.png" />
+    <Image Include="flag-tile.png" />
+    <Image Include="mine-tile.png" />
+    <Image Include="normal-tile.png" />
+    <Image Include="revealed-tile.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

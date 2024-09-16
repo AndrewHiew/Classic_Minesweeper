@@ -1,9 +1,8 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include <iostream>
 
-using namespace std;
+using namespace sf;
 
 class Cell {
 private:
@@ -12,8 +11,8 @@ private:
     bool isFlagged;
     int adjacentMines;
 
-    sf::Sprite sprite;
-    sf::Texture texture;
+    Sprite sprite;
+    Texture texture;
 
 public:
     Cell();
@@ -30,8 +29,10 @@ public:
     int getAdjacentMines() const;
     void setAdjacentMines(int mines);
 
-    void setTexture(const sf::Texture& tex);
-    void setTextureRect(const sf::IntRect& rect);
+    void setTexture(const Texture& tex);
+    void setTextureRect(const IntRect& rect);
     void setPosition(float x, float y);
-    void draw(sf::RenderWindow& window);
+    void draw(RenderWindow& window);
+
+    void updateTexture(const Texture& tileTexture, const Texture& flagTexture, const Texture& mineTexture, const Texture& revealedTexture);
 };
