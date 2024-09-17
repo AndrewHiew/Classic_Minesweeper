@@ -34,5 +34,13 @@ public:
     void setPosition(float x, float y);
     void draw(RenderWindow& window);
 
-    void updateTexture(const Texture& tileTexture, const Texture& flagTexture, const Texture& mineTexture, const Texture& revealedTexture);
+    // Method to update the cell Texture when triggered by either winning or losing the game
+    void revealAll(const Texture& tileTexture, const Texture& flagTexture, const Texture& mineTexture, const Texture& revealedTexture, const Texture& clickedMineTexture
+        , const Texture& tileTextuire1, const Texture& tileTextuire2, const Texture& tileTextuire3, const Texture& tileTextuire4
+        , const Texture& tileTextuire5, const Texture& tileTextuire6, const Texture& tileTextuire7, const Texture& tileTextuire8);
+
+    // Method to update the cell Texture when triggered by mouse event
+    void updateTexture(const Texture& tileTexture, const Texture& flagTexture, const Texture& mineTexture, const Texture& revealedTexture, const Texture& clickedMineTexture
+        , const Texture& tileTextuire1, const Texture& tileTextuire2, const Texture& tileTextuire3, const Texture& tileTextuire4
+        , const Texture& tileTextuire5, const Texture& tileTextuire6, const Texture& tileTextuire7, const Texture& tileTextuire8);
 };
