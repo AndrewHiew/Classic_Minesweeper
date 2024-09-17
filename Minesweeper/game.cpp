@@ -7,8 +7,9 @@ using namespace std;
 
 Game::Game(int rows, int cols, int mines)
     : board(rows, cols, mines), isGameOver(false), isWin(false),
-    window(sf::VideoMode(480, 560), "Classic Minesweeper") {
-    initializeButton(); // Initialize the button when the game starts
+    window(VideoMode(480, 560), "Classic Minesweeper"),
+    leftButtonPressed(false), rightButtonPressed(false) {
+    initializeButton();
 }
 
 void Game::initializeButton() {
@@ -39,6 +40,8 @@ void Game::resetGame() {
     board.reset();
     isGameOver = false;
     isWin = false;
+    leftButtonPressed = false;
+    rightButtonPressed = false;
 }
 
 void Game::drawButton() {
@@ -122,6 +125,7 @@ void Game::startGame() {
 
             if (eventHandler.type == Event::MouseButtonPressed) {
                 if (eventHandler.mouseButton.button == Mouse::Left) {
+                    leftButtonPressed = true;
                     pair<int, int> cell = board.getCellFromPosition(eventHandler.mouseButton.x, eventHandler.mouseButton.y);
                     if (cell.first != -1 && cell.second != -1) {
                         revealCell(cell.first, cell.second);
@@ -129,19 +133,31 @@ void Game::startGame() {
                 }
 
                 if (eventHandler.mouseButton.button == Mouse::Right) {
+                    rightButtonPressed = true;
                     pair<int, int> cell = board.getCellFromPosition(eventHandler.mouseButton.x, eventHandler.mouseButton.y);
                     if (cell.first != -1 && cell.second != -1) {
                         flagCell(cell.first, cell.second);
                     }
                 }
 
-                if (eventHandler.mouseButton.button == Mouse::Left && Mouse::isButtonPressed(Mouse::Right)) {
+                // Check for left-right button combo
+                if (leftButtonPressed && rightButtonPressed) {
                     pair<int, int> centerCell = board.getCellFromPosition(eventHandler.mouseButton.x, eventHandler.mouseButton.y);
-                    this->revealSurroundingCell(centerCell);
+                    revealSurroundingCell(centerCell);
+                    leftButtonPressed = false;
+                    rightButtonPressed = false;
                 }
 
                 // Check for button click
-                handleButtonClick(sf::Vector2i(eventHandler.mouseButton.x, eventHandler.mouseButton.y));
+                handleButtonClick(Vector2i(eventHandler.mouseButton.x, eventHandler.mouseButton.y));
+            }
+            else if (eventHandler.type == Event::MouseButtonReleased) {
+                if (eventHandler.mouseButton.button == Mouse::Left) {
+                    leftButtonPressed = false;
+                }
+                else if (eventHandler.mouseButton.button == Mouse::Right) {
+                    rightButtonPressed = false;
+                }
             }
         }
 
