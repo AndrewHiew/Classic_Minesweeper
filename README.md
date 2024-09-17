@@ -4,6 +4,6 @@ Using C++ OOP to create the classic game, Minesweeper. This program consists of 
 - Board class (Constructs and hold the tile set for players to click)
 - Cell class (The tile itself, holding information such as mines or adjacent to mines)
 
-## Additional Features
+## Additional Features (Still developing)
 - A custom tileset and difficulty selection, allows player to select the size and numbers of mines.
 - Saving and loading the game state.
