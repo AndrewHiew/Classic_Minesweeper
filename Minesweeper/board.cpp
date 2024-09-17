@@ -76,6 +76,7 @@ int Board::getNumMines() {
     return numMines;
 }
 
+
 Cell& Board::getCell(int row, int col) {
     if (isValidCell(row, col)) {
         return grid[row][col];
@@ -105,6 +106,29 @@ void Board::generateMines() {
         }
     }
 }
+
+bool Board::areAllMinesCorrectlyFlagged() {
+    int flaggedMinesCount = 0;
+    int totalFlaggedCells = 0;
+
+    for (int row = 0; row < numRows; ++row) {
+        for (int col = 0; col < numCols; ++col) {
+            if (grid[row][col].getIsFlagged()) {
+                totalFlaggedCells++;
+                if (grid[row][col].getIsMine()) {
+                    flaggedMinesCount++;
+                }
+                else {
+                    return false;
+                }
+            }
+        }
+    }
+
+    // All mines must be flagged and the number of flagged mines must equal the total number of mines
+    return (flaggedMinesCount == numMines && totalFlaggedCells == numMines);
+}
+
 
 void Board::generateBoard() {
     // Calculate adjacent mines for non-mine cells
@@ -155,6 +179,18 @@ void Board::revealCell(int row, int col) {
         }
     }
 }
+
+void Board::reset() {
+    // Reinitialize board parameters and regenerate the board
+    grid = vector<vector<Cell>>(numRows, vector<Cell>(numCols));
+    mineFlagged = 0;
+    isMineClicked = false;
+
+    generateMines();
+    generateBoard();
+}
+
+
 
 
 void Board::flagCell(int row, int col) {

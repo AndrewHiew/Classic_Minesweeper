@@ -1,0 +1,170 @@
+//#include "Game.h"
+//#include <Windows.h>
+//#include <iostream>
+//
+//using namespace sf;
+//using namespace std;
+//
+//Game::Game(int rows, int cols, int mines)
+//    : board(rows, cols, mines), isGameOver(false), isWin(false),
+//    window(sf::VideoMode(480, 560), "Classic Minesweeper"),
+//    leftButtonPressed(false), rightButtonPressed(false) {
+//}
+//
+//void Game::revealCell(int row, int col) {
+//    if (!isGameOver) {
+//        board.revealCell(row, col);
+//    }
+//}
+//
+//void Game::flagCell(int row, int col) {
+//    if (!isGameOver) {
+//        board.flagCell(row, col);
+//    }
+//}
+//
+//void Game::checkWin() {
+//    if (board.areAllMinesCorrectlyFlagged()) {
+//        isWin = true;
+//        isGameOver = true;
+//        MessageBox(nullptr, L"Congratulations, you won!", L"Game Over", MB_OK);
+//    }
+//}
+//
+//void Game::checkLose() {
+//    if (!isGameOver) {
+//        window.clear();
+//        board.revealAllCells(window);
+//        window.display();
+//        isGameOver = true;
+//        MessageBox(nullptr, L"Game Over! You lost.", L"Game Over", MB_OK);
+//    }
+//}
+//
+//void Game::revealSurroundingCell(pair<int, int> centerCell) {
+//    if (centerCell.first != -1 && centerCell.second != -1 && board.getCell(centerCell.first, centerCell.second).getIsRevealed()) {
+//        int adjacentMines = board.getAdjacentMines(centerCell.first, centerCell.second);
+//
+//        int flagCount = 0;
+//        for (int r = -1; r <= 1; ++r) {
+//            for (int c = -1; c <= 1; ++c) {
+//                int newRow = centerCell.first + r;
+//                int newCol = centerCell.second + c;
+//
+//                if (board.isValidCell(newRow, newCol)) {
+//                    if (board.getCell(newRow, newCol).getIsFlagged()) {
+//                        flagCount++;
+//                    }
+//                }
+//            }
+//        }
+//
+//        if (flagCount == adjacentMines) {
+//            for (int r = -1; r <= 1; ++r) {
+//                for (int c = -1; c <= 1; ++c) {
+//                    int newRow = centerCell.first + r;
+//                    int newCol = centerCell.second + c;
+//
+//                    if (board.isValidCell(newRow, newCol) && !board.getCell(newRow, newCol).getIsFlagged()) {
+//                        board.revealCell(newRow, newCol);
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}
+//
+//void Game::initializeButton() {
+//    if (!font.loadFromFile("Arial.ttf")) {
+//        std::cerr << "Failed to load font" << std::endl;
+//    }
+//
+//    // Setup restart button
+//    restartButton.setSize(Vector2f(150, 50));
+//    restartButton.setFillColor(Color::Cyan);
+//    restartButton.setPosition(window.getSize().x - 160, window.getSize().y - 60);
+//
+//    // Setup button text
+//    restartButtonText.setFont(font);
+//    restartButtonText.setString("Restart");
+//    restartButtonText.setCharacterSize(20);
+//    restartButtonText.setFillColor(Color::White);
+//    restartButtonText.setPosition(restartButton.getPosition().x + 10, restartButton.getPosition().y + 10);
+//}
+//
+//void Game::handleButtonClick(Vector2i mousePosition) {
+//    if (restartButton.getGlobalBounds().contains(static_cast<Vector2f>(mousePosition))) {
+//        resetGame();
+//    }
+//}
+//
+//void Game::resetGame() {
+//    board.reset();
+//    isGameOver = false;
+//    isWin = false;
+//    leftButtonPressed = false;
+//    rightButtonPressed = false;
+//}
+//
+//void Game::drawButton() {
+//    window.draw(restartButton);
+//    window.draw(restartButtonText);
+//}
+//
+//void Game::startGame() {
+//    initializeButton(); // Initialize the button
+//
+//    while (window.isOpen()) {
+//        if (!isGameOver) {
+//            // Event Handling
+//            Event eventHandler;
+//            while (window.pollEvent(eventHandler)) {
+//                if (eventHandler.type == Event::Closed) {
+//                    window.close();
+//                }
+//
+//                if (eventHandler.type == Event::MouseButtonPressed) {
+//                    if (eventHandler.mouseButton.button == Mouse::Left) {
+//                        leftButtonPressed = true;
+//                        pair<int, int> cell = board.getCellFromPosition(eventHandler.mouseButton.x, eventHandler.mouseButton.y);
+//                        if (cell.first != -1 && cell.second != -1) {
+//                            revealCell(cell.first, cell.second);
+//                        }
+//                    }
+//                    else if (eventHandler.mouseButton.button == Mouse::Right) {
+//                        rightButtonPressed = true;
+//                        pair<int, int> cell = board.getCellFromPosition(eventHandler.mouseButton.x, eventHandler.mouseButton.y);
+//                        if (cell.first != -1 && cell.second != -1) {
+//                            flagCell(cell.first, cell.second);
+//                        }
+//                    }
+//
+//                    // Check for left-right button combo
+//                    if (leftButtonPressed && rightButtonPressed) {
+//                        pair<int, int> centerCell = board.getCellFromPosition(eventHandler.mouseButton.x, eventHandler.mouseButton.y);
+//                        this->revealSurroundingCell(centerCell);
+//                        leftButtonPressed = false;
+//                        rightButtonPressed = false;
+//                    }
+//
+//                    // Check for button click
+//                    handleButtonClick(sf::Vector2i(eventHandler.mouseButton.x, eventHandler.mouseButton.y));
+//                }
+//                else if (eventHandler.type == Event::MouseButtonReleased) {
+//                    if (eventHandler.mouseButton.button == Mouse::Left) {
+//                        leftButtonPressed = false;
+//                    }
+//                    else if (eventHandler.mouseButton.button == Mouse::Right) {
+//                        rightButtonPressed = false;
+//                    }
+//                }
+//            }
+//        }
+//
+//        // Drawing the board and button
+//        window.clear();
+//        board.draw(window);
+//        drawButton();
+//        window.display();
+//    }
+//}

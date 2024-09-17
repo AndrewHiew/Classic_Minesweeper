@@ -33,6 +33,7 @@ public:
     void setTextureRect(const IntRect& rect);
     void setPosition(float x, float y);
     void draw(RenderWindow& window);
+    void reset();
 
     // Method to update the cell Texture when triggered by either winning or losing the game
     void revealAll(const Texture& tileTexture, const Texture& flagTexture, const Texture& mineTexture, const Texture& revealedTexture, const Texture& clickedMineTexture

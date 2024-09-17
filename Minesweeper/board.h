@@ -43,11 +43,12 @@ public:
     bool getIsMineClicked();
     int getMineFlagged();
     int getNumMines();
+    bool areAllMinesCorrectlyFlagged();
     int getAdjacentMines(int row, int col) const;
     bool isValidCell(int row, int col) const;
     bool isMine(int row, int col) const;
     Cell& getCell(int row, int col);
-
+    void reset();
 
     // Method to draw the entire board
     void draw(RenderWindow& window);

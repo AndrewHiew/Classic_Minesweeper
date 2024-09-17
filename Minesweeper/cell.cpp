@@ -33,6 +33,13 @@ void Cell::draw(RenderWindow& window) {
     window.draw(sprite);
 }
 
+void Cell::reset() {
+    isMine = false;
+    isRevealed = false;
+    isFlagged = false;
+    adjacentMines = 0;
+}
+
 // Method to update the cell Texture when triggered by either winning or losing the game
 void Cell::revealAll(const Texture& tileTexture, const Texture& flagTexture, const Texture& mineTexture, const Texture& revealedTexture, const Texture& clickedMineTexture
     , const Texture& tileTexture1, const Texture& tileTexture2, const Texture& tileTexture3, const Texture& tileTexture4

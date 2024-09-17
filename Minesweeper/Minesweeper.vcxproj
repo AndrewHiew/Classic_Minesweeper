@@ -136,6 +136,7 @@
     <ClCompile Include="cell.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="reference.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="1-tile.png" />
@@ -151,6 +152,9 @@
     <Image Include="mine-tile.png" />
     <Image Include="normal-tile.png" />
     <Image Include="revealed-tile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Arial.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
