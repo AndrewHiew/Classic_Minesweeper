@@ -1,4 +1,4 @@
-# Data Structure Project - Minesweeper
+# Minesweeper
 Using C++ OOP to create the classic game, Minesweeper. This program consists of 3 classes.
 - Game class (Controls the overall game logic and event handler)
 - Board class (Constructs and hold the tile set for players to click)
